@@ -9,15 +9,26 @@ const Button = (props) => {
     </button>
   )
 }
+const Statistic = ({ text, value }) => {
+  if(text==='Positives'){
+    return (
+      <p>{text} {value} %</p>
+    )
+  }else{
+    return (
+      <p>{text} {value}</p>
+    )
+  }  
+}
 const Statistics = ({ good,neutral,bad,suma,promedio,positivos }) => {
   return (
     <div>
-      <p>Good {good}</p>
-      <p>Neutral {neutral}</p>
-      <p>Bad {bad}</p>
-      <p>All {suma}</p>
-      <p>Average {suma>0? promedio :0}</p>
-      <p>Positives {suma>0? positivos :0} %</p>
+      <Statistic text={'Good'} value={good} />
+      <Statistic text={'Neutral'} value={neutral} />
+      <Statistic text={'Bad'} value={bad} />
+      <Statistic text={'All'} value={suma} />
+      <Statistic text={'Average'} value={suma>0? promedio :0} />
+      <Statistic text={'Positives'} value={suma>0? positivos :0} rrrssss/>
     </div>
   )
 }
@@ -39,9 +50,10 @@ const App = () => {
   const sumaGood = () => setGood(good + 1)
   const sumaNeutral = () => setNeutral(neutral + 1)
   const sumaBad = () => setBad(bad + 1)
-  let suma = good + neutral + bad
-  let promedio = (good - bad)/suma
-  let positivos = (good*100)/suma;
+  const suma = good + neutral + bad
+  const promedio = (good - bad)/suma
+  const positivos = (good*100)/suma;
+  
   
   return (
     <div>
