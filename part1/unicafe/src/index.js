@@ -16,7 +16,10 @@ const App = () => {
   const sumaGood = () => setGood(good + 1)
   const sumaNeutral = () => setNeutral(neutral + 1)
   const sumaBad = () => setBad(bad + 1)
-
+  let suma = good + neutral + bad
+  let promedio = (good - bad)/suma
+  let positivos = (good*100)/suma;
+  
   return (
     <div>
       <h1>Give feedback</h1>
@@ -33,6 +36,10 @@ const App = () => {
       <h4>Good {good}</h4>
       <h4>Neutral {neutral}</h4>
       <h4>Bad {bad}</h4>
+      <h4>All {suma}</h4>
+      <h4>Average {suma>0? promedio :0}</h4>
+      <h4>Positives {suma>0? positivos :0} %</h4>
+
       
     </div>
   )
