@@ -21,6 +21,17 @@ const Statistics = ({ good,neutral,bad,suma,promedio,positivos }) => {
     </div>
   )
 }
+const Decidir = ({ good, neutral, bad, promedio, positivos, suma }) => {
+  if (suma===0) {
+    return (    
+      <p>No feedback given</p>
+    )
+    }else{
+      return (
+        <Statistics good={good} neutral={neutral} bad={bad} suma={suma} promedio={promedio} positivos={positivos} />
+      )
+    }  
+}
 const App = () => {
   const [good, setGood] = useState(0)
   const [neutral, setNeutral] = useState(0)
@@ -44,9 +55,8 @@ const App = () => {
       <Button handleClick={sumaBad}
         text='Bad'
       />
-      <Statistics good={good} neutral={neutral} bad={bad} suma={suma} promedio={promedio} positivos={positivos} />
-
-      
+      <h1>Statistics</h1>
+      <Decidir good={good} neutral={neutral} bad={bad} suma={suma} promedio={promedio} positivos={positivos} />
     </div>
   )
 }
