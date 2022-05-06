@@ -34,21 +34,27 @@ const App = (props) => {
   const [votos, setVotos] = useState(inicioZeros)
   const temporalVotos = [ ...votos]
   temporalVotos[selected] +=1 
-  const nuevoVoto = () => setVotos(temporalVotos)    
+  const nuevoVoto = () => setVotos(temporalVotos)
+  
+  const max = Math.max(...votos)
+  const maxAnecdote = votos.findIndex(a => a == max)
+  
 
   return (
     <div>
+      <h1>Anecdote of the day</h1>
       <p>{anecdotes[selected]}</p>
       <p>Has {votos[selected]} votes</p>
       
       <Button handleClick={nuevoVoto}
         text='Vote'
       />
-      
-      {console.log(votos)}
       <Button handleClick={nuevoItem} 
         text='Next anecdote'
-      />      
+      />
+      <h1>Anecdote with most votes</h1>
+      <p>{anecdotes[maxAnecdote]}</p>
+      <p>Has {votos[maxAnecdote]} votes</p>
     </div>
   )
 }
