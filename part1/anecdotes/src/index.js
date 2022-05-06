@@ -9,7 +9,8 @@ const anecdotes = [
   'Any fool can write code that a computer can understand. Good programmers write code that humans can understand.',
   'Premature optimization is the root of all evil.',
   'Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.',
-  'Prueba de comentario'
+  'Prueba de comentario',
+  'Otra prueba de comentario'
 ]
 const Button = ({ text,handleClick }) => {
   return (
@@ -24,21 +25,33 @@ const integerAleatorio = (min, max) => {
   )
 }
 
+
 const App = (props) => {
   const [selected, setSelected] = useState(0)
   const nuevoItem = () => setSelected(integerAleatorio(0,anecdotes.length))
 
+  const inicioZeros = Array(anecdotes.length).fill(0)
+  const [votos, setVotos] = useState(inicioZeros)
+  const temporalVotos = [ ...votos]
+  temporalVotos[selected] +=1 
+  const nuevoVoto = () => setVotos(temporalVotos)    
+
   return (
     <div>
-      <p>{props.anecdotes[selected]}</p>
+      <p>{anecdotes[selected]}</p>
+      <p>Has {votos[selected]} votes</p>
+      
+      <Button handleClick={nuevoVoto}
+        text='Vote'
+      />
+      
+      {console.log(votos)}
       <Button handleClick={nuevoItem} 
         text='Next anecdote'
       />      
     </div>
   )
 }
-
-
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
